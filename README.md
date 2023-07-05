@@ -19,6 +19,11 @@ Di tahun 2020, pajak properti di Kota Philadelphia berkontribusi sebesar 14,5% d
 ## Goal
 Membuat sebuah model machine learning yang dapat membantu OPA untuk **menentukan harga pasar properti baru (*market value*) yang belum ditaksasi di Kota Philadelphia**.
 
+## **Analytic Approach**
+Jadi dari penjabaran di atas, kami akan menganalisis data untuk dapat menemukan pola dari fitur-fitur yang ada, yang membedakan fitur tertentu seperti lokasi, tanggal, luas dengan yang lainnya dalam hal market value pada jenis gedung perumahan (Residentials atau single Family).
+
+Selanjutnya, kami akan membangun suatu model regresi yang akan membantu perusahaan/badan/lembaga untuk dapat menyediakan 'tool' atau model prediktif yang mampu prediksi market value of property (khususnya jenis perumahan/Residentials) di kota philadelpia di waktu dan lokasi tertentu. Disini kami akan melakukan eksperimen dengan beberapa algoritma model regresi yang sering digunakan seperti Linear Regression, KNN, SGD, Random Forest, XGB, dan LGBM. Dimana kami akan memilih satu model (atau gabungan dari beberapa model) untuk membuat tool tersebut yang sesuai dengan data dari Office of Property Assesment (OPA) https://opendataphilly.org/datasets/philadelphia-properties-and-assessment-history/.
+
 ## Evaluation Metrics
 1. MAE (Mean Absolute Error)
 2. RMSLE (Root Mean Squared Log Error)
@@ -28,7 +33,63 @@ Membuat sebuah model machine learning yang dapat membantu OPA untuk **menentukan
 |**Metric** | **Target**
 |----- | ----- |
 |MAPE| <= 42k USD
-| MAPE | <= 13%
+| MAPE | <= 13%|
+
+# Preprocessing
+Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang sudah dibersihkan akan kita gunakan untuk pemodelan. Beberapa hal yang dilakukan adalah:
+
+1) Data Cleaning
+- Drop data duplikat jika ada.
+- Cek format penulisan data apakah sudah benar atau belum (jika ada).
+- Drop fitur yang tidak memiliki relevansi terhadap harga market properti.
+- Melakukan treatment terhadap missing value jika ada. Bisa dengan cara men-drop fiturnya jika memang tidak dibutuhkan atau bisa juga dengan mengimputasi dengan nilai yang paling masuk baik secara *domain knowledge* maupun secara statistik.
+- Pengecekan Outliers
+
+2) Feature engineering adalah proses membuat, memilih, atau mengekstraksi fitur (features) yang relevan dari data mentah (raw data) untuk digunakan dalam proses pembelajaran mesin (machine learning). Tujuan utama dari feature engineering adalah meningkatkan kualitas data yang akan digunakan oleh algoritma pembelajaran mesin sehingga menghasilkan model yang lebih baik dan performa yang lebih baik pula. Kita akan melakukan :
+   - ekstraksi fitur (**feature extraction**) 
+   - konstruksi fitur (**feature construction**) atau pembuatan fitur (**feature creation**)
+   
+3) Data Transformation
+- langkah ini melibatkan pengubahan data ke dalam format yang lebih cocok untuk pemodelan regressi untuk memprediksi harga market properti. Ini dapat mencakup normalisasi data numerik, membuat variabel dummy, dan mengkodekan data kategorikal.
+
+# Modelling
+Menggunakan uji RandomForest Regressor, XGBoost Regressor, dan LGBM Regressor. Berikut hasilnya:
+
+|Model|	Mean_MAE	|Std_MAE	|Mean_MAPE	|Std_MAPE|	Mean_RMSLE|	Std_RMSLE|	Mean_R-Squared	|Std_R-Squared|	cv duration (minutes)|
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- 
+|0	|RandomForest Regressor|	-19523.141701|	407.534850|	-0.135378|	0.001974|	-0.251589|	0.003460|	0.887791	|0.008019	|56.678306|
+|1	|XGBoost Regressor|	-30867.305234|	192.172436|	-0.227556|	0.001496|	-0.316739	|0.001408	|0.831060|	0.003824|	2.357592|
+|2|	LGBM Regressor	|-33859.142211|	242.295018	|-0.250618|	0.001780|	-0.339415	|0.002176|	0.795538	|0.003642	|0.452971|
+
+Dari hasil Model Benchmarking di atas, dilihat dari semua metrics yang ada maka Model dengan algoritma Random Forest memiliki nilai error yang paling rendah. Tapi kelemahan dari Random Forest adalah waktu/durasi untuk training nya cukup lama jika dibandingkan dengan XGBoost dan LGBM.
+
+Selain itu dari hasil MAPE yang didapatkan bisa dibilang cukup rendah pada ketiga model ini, yang menandakan nilai prediksi yang lebih tinggi jika dibandingkan nilai aktual (overestimation) dapat di handel dengan cukup baik pada prediksi registered users, karea MAPE sensitif terhadap nilai prediksi yang overestimated. Sedangkan untuk RMSLE nya juga nilainya cukup kecil, yang artinya nilai prediksi yang lebih rendah dari nilai aktual nya (underestimation) dapat di handel dengan cukup baik juga, dimana RSMLE sensitif terhadap error pada nilai prediksi yang underestimated.
+
+## Feature Importances
+5 fitur terbaik, antara lain:
+- `property_age`
+- `total_area`
+- `overall_condition`
+- `total_livable_area`
+- `region`
+
+Sesuai dengan pengetahuan umum bahwa kelima fitur ini akan cenderung memiliki pengaruh yang signifikan untuk pemodelan.
+Ada beberapa fitur yang tidak penting yang dihapus agar mempercepat waktu pelatihan dan prediksi, mengurangi overfitting, meningkatkan interpretabilitas, mengurangi kompleksitas dan biaya.
+
+## Hyperparameter Tuning
+Setelah dilakukan tuning kami mendapatkan best_parameter untuk model terbaik pada dataset ini : 
+'model__regressor__n_estimators': 1200, 'model__regressor__min_samples_split': 3, 'model__regressor__min_samples_leaf': 1, 'model__regressor__max_features': 'auto', 'model__regressor__max_depth': 80, 'model__regressor__bootstrap': True}
+
+Testing model terbaik **sebelum** di tuning:
+| |	MAE	|MAPE|	RMSLE	|R-Squared|
+|-----|-----|-----|-----|-----|
+|RandomForest	|17794.461094|	0.122322	|0.240366	|0.894169
+
+
+Testing model terbaik **setelah** di tuning:
+| |	MAE	|MAPE|	RMSLE	|R-Squared|
+|-----|-----|-----|-----|-----|
+|RandomForest	|17731.06426|	0.121759	|0.239235	|0.895058
 
 # Conclusions and Recommendations
 ## Conclusions
