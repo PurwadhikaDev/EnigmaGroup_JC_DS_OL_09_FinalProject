@@ -35,6 +35,16 @@ Selanjutnya, kami akan membangun suatu model regresi yang akan membantu perusaha
 |MAPE| <= 42k USD
 | MAPE | <= 13%|
 
+# Data Understanding
+## Attributes Information & EDA
+1. Terdapat 6 kategori properti: Single Family, Multi Family, Mixed Use, Vacant Land, Commercial, dan Industrial.
+2. Kategori Single Family mendominasi hampir 80% dataset.
+3. Mayoritas persebaran data pada fitur-fitur diasumsikan tidak terdistribusi normal sehingga interpretasi data akan menggunakan median.
+4. Fitur yang merepresentasikan keadaan rumah yaitu luas tanah, luas bangunan, jumlah ruangan, jumlah kamar tidur, jumlah kamar mandi, ada garasi/tidak, jumlah lantai bangunan, kondisi eksterior dan interior, tahun pendirian bangunan, dll.
+5. Fitur yang merepresentasikan lokasi seperti kode pos, nama jalan, nomor rumah, kode state, zona, dll.
+6. Fitur lainnya mencerminkan nama pemilik, tahun penjualan properti, harga penjualan, dll.
+
+   
 # Preprocessing
 Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang sudah dibersihkan akan kita gunakan untuk pemodelan. Beberapa hal yang dilakukan adalah:
 
@@ -90,6 +100,13 @@ Testing model terbaik **setelah** di tuning:
 | |	MAE	|MAPE|	RMSLE	|R-Squared|
 |-----|-----|-----|-----|-----|
 |RandomForest	|17731.06426|	0.121759	|0.239235	|0.895058
+
+Terjadi peningkatan performa pada masing-masing metric sebesar:
+
+- MAE : 0.30%
+- MAPE : 0.46%
+- RMSLE : 0.47%
+- R-Squared : 0.1% 
 
 # Conclusions and Recommendations
 ## Conclusions
