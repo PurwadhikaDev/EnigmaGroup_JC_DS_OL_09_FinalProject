@@ -32,7 +32,7 @@ Selanjutnya, kami akan membangun suatu model regresi yang akan membantu perusaha
 ## Target
 |**Metric** | **Target**
 |----- | ----- |
-|MAPE| <= 42k USD
+|MAPE| <= 42,000 USD
 | MAPE | <= 13%|
 
 # Data Understanding
