@@ -44,6 +44,8 @@ Selanjutnya, kami akan membangun suatu model regresi yang akan membantu perusaha
 5. Fitur yang merepresentasikan lokasi seperti kode pos, nama jalan, nomor rumah, kode state, zona, dll.
 6. Fitur lainnya mencerminkan nama pemilik, tahun penjualan properti, harga penjualan, dll.
 
+Attributes Information dan EDA secara lengkap dan rinci dapat dilihat pada Notebook.
+
    
 # Preprocessing
 Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang sudah dibersihkan akan kita gunakan untuk pemodelan. Beberapa hal yang dilakukan adalah:
