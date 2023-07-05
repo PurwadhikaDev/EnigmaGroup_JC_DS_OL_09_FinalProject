@@ -30,12 +30,6 @@ Membuat sebuah model machine learning yang dapat membantu OPA untuk **menentukan
 |MAPE| <= 42k USD
 | MAPE | <= 13%
 
-# Data Understanding
-## Attributes Information
-
-## EDA
-
-
 # Conclusions and Recommendations
 ## Conclusions
 1. Model yang telah dibangun memiliki score MAPE sebesar 12.1%. yang berarti ketika model yang dibuat digunakan untuk memprediksi nilai properti pada rentang nilai seperti yang dilatih terhadap model (market value: 1,000 USD - 4,160,000 USD ) untuk tipe properti residensial di kota Philadelphia, maka hasil prediksi yang dihasilkan oleh model memiliki kemungkinan tingkat kesalahan sebesar 12.1% dari nilai aslinya. Nilai MAPE yang didapat, yaitu sekitar **12,1%** menjadikan model ini dapat dikategorikan ke dalam **'Good forecasting'** (Lewis, 1982).
