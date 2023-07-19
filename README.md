@@ -90,8 +90,8 @@ Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang s
 # Modelling
 Menggunakan uji RandomForest Regressor, XGBoost Regressor, dan LGBM Regressor dengan cross validation (n=5). Berikut hasilnya:
 
-|Model|	Mean_MAE	|Std_MAE	|Mean_MAPE	|Std_MAPE|	Mean_RMSLE|	Std_RMSLE|	Mean_R-Squared	|Std_R-Squared|	cv duration (minutes)|
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- 
+|No|Model|	Mean_MAE	|Std_MAE	|Mean_MAPE	|Std_MAPE|	Mean_RMSLE|	Std_RMSLE|	Mean_R-Squared	|Std_R-Squared|	cv duration (minutes)|
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- 
 |0	|RandomForest Regressor|	-19521.498159|	336.152118|	-0.134994|	0.001733|	-0.251128|	0.002205|	0.887309|	0.004283|	55.706672|
 |1	|XGBoost Regressor|	-30907.723678|	245.324789|	-0.227797|	0.001998|	-0.316795|	0.001585|	0.829019|	0.004729|	2.231662|
 |2|	LGBM Regressor	|-33859.785435|	319.672300|	-0.250820|	0.001987|	-0.339223|	0.002319|	0.795712|	0.005851|	0.412182|
