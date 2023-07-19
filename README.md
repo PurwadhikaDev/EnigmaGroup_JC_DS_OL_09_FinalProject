@@ -148,7 +148,7 @@ Dari sumber resmi yang kami dapat (https://www.phila.gov/services/payments-assis
 
 **𝑇𝑎𝑥 𝑅𝑒𝑣𝑒𝑛𝑢𝑒 = 1.3998% x 𝑇𝑜𝑡𝑎𝑙_𝑚𝑎𝑟𝑘𝑒𝑡_𝑣𝑎𝑙𝑢𝑒**\
 
-Dari grafik di atas dapat disimpulkan bahwa :
+Dari grafik di bawah dapat disimpulkan bahwa :
 
 Model yang kami bangun cenderung untuk melakukan underestimation, sehingga nilai pajak yang didapat lebih rendah dari nilai aktualnya. Akan tetapi perbedaan nya tidak terlalu jauh yaitu hanya sebesar 3%.
 
