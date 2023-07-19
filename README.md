@@ -1,38 +1,40 @@
 # Business Understanding
 ## Context
 
+**Tentang Kota Philadelphia**
 
-Philadelphia Buildings Database ini memuat informasi tentang karakteristik fisik dan lokasi bangunan di kota Philadelphia. Data ini dapat menjadi referensi untuk penyewaan, perencanaan, zonasi dan, pemeliharaan properti.
+![Philadelphia city ](assets/philadelphia.jpg)  
 
-Dataset ini bersumber dari https://opendataphilly.org/. Situs tersebut adalah portal yang menyediakan akses ke lebih dari 300 set data, aplikasi, dan API yang terkait dengan wilayah Philadelphia. Kemudahan dan kebebasan mengakses data ini bertujuan untuk mendorong kinerja pemerintah yang lebih baik dan juga lebih transparan kepada masyarakat.
+Philadelphia adalah kota terbesar di negara bagian Pennsylvania, Amerika Serikat. Meskipun bukan merupakan ibu kota negara bagian, (ibu kota Pennsylvania adalah Harrisburg), Philadelphia merupakan salah satu kota paling bersejarah di Amerika. Menurut sensus tahun 2000, Philadelphia ditetapkan sebagai kota terbesar kelima di Amerika Serikat. Perkiraan penduduknya pada 30 Juni 2005 adalah 1.470.151 jiwa. Luasnya adalah 349,9 km². Kota ini memiliki ekonomi yang kuat dan beragam , sebagai salah satu sumber pendapatan utama bagi pemerintah kota, pajak properti memiliki peran penting dalam mendukung pengembangan dan penyediaan layanan publik di Philadelphia.
 
-`The Office of Property Assessment (OPA)` adalah salah satu departemen dalam pemerintahan Kota Philadelphia yang bertugas untuk menentukan nilai setiap properti di Philadelphia. Asesmen harga dari OPA digunakan untuk menghitung pajak properti yang harus dibayar oleh pemilik.
 
-Secara terbuka, OPA menerima pengajuan untuk pengurangan maupun pengecualian yang dapat mengurangi pajak properti. Jika pemilik properti tidak setuju dengan penilaian atau yakin bahwa pengurangan atau pengecualian belum diterapkan dengan benar, OPA menawarkan pilihan untuk meminta peninjauan ulang atau mengajukan banding. Oleh karena itu, sebagai stakeholder, OPA membutuhkan analisis secara mendalam dan sebuah alat atau tool yang dapat membantu OPA dalam menentukan harga properti secara akurat. Kasus ini menjadi sangat penting karena pajak merupakan salah satu sumber pendapatan pemerintah yang akan digunakan untuk perencanaan anggaran kota.
+![Tax Property in Philadelphia comapre with other city ](assets/tax.png)  
 
-Dalam skala besar, setiap negara memiliki target pendapatan melalui pajak dengan ketentuan dan sistem yang berbeda-beda. Skala lebih kecilnya, pendapatan dari pajak tersebut dikumpulkan dari region, subregion, maupun kota. Pendapatan ini akan dialokasikan dalam beberapa klasifikasi anggaran sesuai kebutuhan kota, termasuk pembangunan, pendidikan, maupun fasilitas umum. Kota Philadelphia memiliki dataset yang berisi harga pasar (market value) setiap properti di kota yang digunakan untuk perhitungan pajak. Seiring berjalannya waktu, akan ada properti-properti baru yang dibangun di Kota Philadelphia yang harga pasarnya belum ditaksasi. Oleh karena itu, penting bagi pemerintah untuk mengetahui proyeksi nominal pendapatan yang akan diterima sebelum menyusun anggaran agar alokasi anggaran menjadi tepat sasaran sesuai target. 
-
+Gambar di atas juga menunjukkan persentase pendapatan yang diwakili oleh pajak properti di Philadelphia dan 10 kota lainnya untuk tahun fiskal 2020, tahun terbaru yang data lengkapnya tersedia. Bagian pendapatan dari pajak properti di Philadelphia sebesar 14,5% dari pendapatan dana umum, kurang dari separuh median 31,5%. Dalam hal pendapatan kota secara keseluruhan, pajak properti memberikan kontribusi sebesar 9,5% di Philadelphia, lebih rendah dibandingkan dengan kota lain yang dipertimbangkan kecuali Columbus, dan juga kurang dari separuh median. 
 Data terbaru di tahun 2020, dilansir pada tautan https://www.pewtrusts.org/en/research-and-analysis/reports/2022/09/how-property-is-taxed-in-philadelphia, total pendapatan (*general revenue*) Kota Philadelphia berjumlah $4,834 M dengan rincian sebagai berikut:
 - $  699 M   (14.5%) dari pajak properti
 - $2,124  M  (43.9%) dari pajak upah, penghasilan, dan laba bersih
 - $1,229 M    (25.4%) dari pajak lainnya
 - $  782  M  (16.2%) dari selain pajak
 
-![Tax Property in Philadelphia comapre with other city ](assets/tax.png)
-
-Gambar di atas juga menunjukkan persentase pendapatan yang diwakili oleh pajak properti di Philadelphia dan 10 kota lainnya untuk tahun fiskal 2020, tahun terbaru yang data lengkapnya tersedia. Bagian pendapatan dari pajak properti di Philadelphia sebesar 14,5% dari pendapatan dana umum, kurang dari separuh median 31,5%. Dalam hal pendapatan kota secara keseluruhan, pajak properti memberikan kontribusi sebesar 9,5% di Philadelphia, lebih rendah dibandingkan dengan kota lain yang dipertimbangkan kecuali Columbus, dan juga kurang dari separuh median. 
+Dari data di atas dapat dilihat bahwa pajak Kota Philadelphia berkontribusi cukup rendah pada pendapatan kota dibandingkan kota-kota lainnya. Oleh karena itu, kasus ini menjadi penting karena dengan adanya model yang dapat memprediksi harga pasar properti secara akurat berpotensi mengoptimalisasi pendapatan kota.
 
 
-Dari data di atas dapat dilihat bahwa pajak Kota Philadelphia berkontribusi cukup rendah pada pendapatan kota dibandingkan kota-kota lainnya. Oleh karena itu, kasus ini menjadi penting karena dengan adanya model yang dapat memprediksi harga pasar properti secara akurat berpotensi mengoptimalisasi pendapatan kota. 
+Maka dari itu `The Office of Property Assessment (OPA)` adalah salah satu departemen dalam pemerintahan Kota Philadelphia yang bertugas untuk menentukan nilai setiap properti di Philadelphiac memiliki peranan penting. Dimana asesmen harga properti dari OPA digunakan untuk menghitung pajak properti yang harus dibayar oleh pemilik.
+
+Secara terbuka, OPA menerima pengajuan untuk pengurangan maupun pengecualian yang dapat mengurangi pajak properti. Jika pemilik properti tidak setuju dengan penilaian atau yakin bahwa pengurangan atau pengecualian belum diterapkan dengan benar, OPA menawarkan pilihan untuk meminta peninjauan ulang atau mengajukan banding. Oleh karena itu, sebagai stakeholder, OPA membutuhkan analisis secara mendalam dan sebuah alat atau tool yang dapat membantu OPA dalam menentukan harga properti secara akurat. Kasus ini menjadi sangat penting karena pajak merupakan salah satu sumber pendapatan pemerintah yang akan digunakan untuk perencanaan anggaran kota.
+
+Dalam skala besar, setiap negara memiliki target pendapatan melalui pajak dengan ketentuan dan sistem yang berbeda-beda. Skala lebih kecilnya, pendapatan dari pajak tersebut dikumpulkan dari region, subregion, maupun kota. Pendapatan ini akan dialokasikan dalam beberapa klasifikasi anggaran sesuai kebutuhan kota, termasuk pembangunan, pendidikan, maupun fasilitas umum. Kota Philadelphia memiliki dataset yang berisi harga pasar (market value) setiap properti di kota yang digunakan untuk perhitungan pajak. Seiring berjalannya waktu, akan ada properti-properti baru yang dibangun di Kota Philadelphia yang harga pasarnya belum ditaksasi. Oleh karena itu, penting bagi pemerintah untuk mengetahui proyeksi nominal pendapatan yang akan diterima sebelum menyusun anggaran agar alokasi anggaran menjadi tepat sasaran sesuai target.
+Selain itu, menurut Thumbtack, waktu yang dibutuhkan untuk pembuatan laporan setelah dilakukan survei rata-rata 2 minggu. Sehingga OPA membutuhkan sebuah alat/tools untuk membantu menentukan harga pasar properti dengan cepat dan tepat.
    
 
 ## Problem Statement
-1. Bagaimana caranya memprediksi harga properti sehingga perhitungak pajak menjadi akurat?
-1. Jenis properti apa yang sebaiknya diprioritaskan terlebih dahulu untuk efisiensi waktu dan biaya dalam pembuatan model machine learning?
-1. Model machine learning apa yang sebaiknya digunakan untuk menghitung nilai properti secara akurat?
+1. Bagaimana cara memprediksi harga pasar properti dengan akurat sehingga perhitungan pajak menjadi akurat?
+2. Alat/tools apa yang sebaiknya digunakan untuk menghitung nilai properti secara cepat dan akurat?
+3. Apa saja variabel yang memiliki pengaruh signifikan terhadap harga pasar properti di Kota Philadelphia?
 
 ## Goal
-Membuat sebuah model machine learning yang dapat membantu OPA untuk **menentukan harga pasar properti baru (*market value*) yang belum ditaksasi di Kota Philadelphia**.
+Membangun tool atau sebuah model prediktif berbasis machine learning yang dapat membantu OPA dalam **memprediksi harga pasar properti tipe single-family/residential di Kota Philadelphia yang belum ditaksasi**. Baik bangunan baru maupun bangunan lama yang memerlukan asesmen baru. Dengan menggunakan hasil prediksi model ini untuk menentukan harga pasar properti, diharapkan dapat membantu pemerintah dalam menentukan nilai pajak properti yang lebih akurat. Dengan penilaian yang lebih tepat, diharapkan pendapatan kota dari pajak properti dapat terserap dengan akurasi yang maksimal.
 
 ## **Analytic Approach**
 <div align="justify"> Jadi dari penjabaran di atas, kami akan menganalisis data untuk dapat menemukan pola dari fitur-fitur yang ada, yang membedakan fitur tertentu seperti lokasi, tanggal, luas dengan yang lainnya dalam hal market value pada jenis gedung perumahan (Residentials atau single Family).
@@ -45,11 +47,16 @@ https://opendataphilly.org/datasets/philadelphia-properties-and-assessment-histo
 2. RMSLE (Root Mean Squared Log Error)
 3. MAPE (Mean Absolute Percentage Error)
 
-## Target
+## **Error Goals**
+Error goals /toleransi error /kriteria penerimaan model mengacu pada tingkat error yang dapat diterima dalam model, apakah model yang dibangun memenuhi kriteria atau tidak.  
+
+Error target/goals yang akan kita coba capai adalah 
+
 |**Metric** | **Target**
 |----- | ----- |
-|MAPE| <= 42,000 USD
-| MAPE | <= 13%|
+|MAE| <= $42k 
+| MAPE | <= 13%
+| RMSLE | <= 0.239
 
 # Data Understanding
 ## Attributes Information & EDA
@@ -81,13 +88,13 @@ Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang s
 - langkah ini melibatkan pengubahan data ke dalam format yang lebih cocok untuk pemodelan regressi untuk memprediksi harga market properti. Ini dapat mencakup normalisasi data numerik, membuat variabel dummy, dan mengkodekan data kategorikal.
 
 # Modelling
-Menggunakan uji RandomForest Regressor, XGBoost Regressor, dan LGBM Regressor. Berikut hasilnya:
+Menggunakan uji RandomForest Regressor, XGBoost Regressor, dan LGBM Regressor dengan cross validation (n=5). Berikut hasilnya:
 
 |Model|	Mean_MAE	|Std_MAE	|Mean_MAPE	|Std_MAPE|	Mean_RMSLE|	Std_RMSLE|	Mean_R-Squared	|Std_R-Squared|	cv duration (minutes)|
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- 
-|0	|RandomForest Regressor|	-19523.141701|	407.534850|	-0.135378|	0.001974|	-0.251589|	0.003460|	0.887791	|0.008019	|56.678306|
-|1	|XGBoost Regressor|	-30867.305234|	192.172436|	-0.227556|	0.001496|	-0.316739	|0.001408	|0.831060|	0.003824|	2.357592|
-|2|	LGBM Regressor	|-33859.142211|	242.295018	|-0.250618|	0.001780|	-0.339415	|0.002176|	0.795538	|0.003642	|0.452971|
+|0	|RandomForest Regressor|	-19521.498159|	336.152118|	-0.134994|	0.001733|	-0.251128|	0.002205|	0.887309|	0.004283|	55.706672|
+|1	|XGBoost Regressor|	-30907.723678|	245.324789|	-0.227797|	0.001998|	-0.316795|	0.001585|	0.829019|	0.004729|	2.231662|
+|2|	LGBM Regressor	|-33859.785435|	319.672300|	-0.250820|	0.001987|	-0.339223|	0.002319|	0.795712|	0.005851|	0.412182|
 
 <div align="justify"> Dari hasil Model Benchmarking di atas, dilihat dari semua metrics yang ada maka Model dengan algoritma Random Forest memiliki nilai error yang paling rendah. Tapi kelemahan dari Random Forest adalah waktu/durasi untuk training nya cukup lama jika dibandingkan dengan XGBoost dan LGBM.
 
@@ -106,31 +113,63 @@ Ada beberapa fitur yang tidak penting yang dihapus agar mempercepat waktu pelati
 
 ## Hyperparameter Tuning
 Setelah dilakukan tuning kami mendapatkan best_parameter untuk model terbaik pada dataset ini : 
-'model__regressor__n_estimators': 1200, 'model__regressor__min_samples_split': 3, 'model__regressor__min_samples_leaf': 1, 'model__regressor__max_features': 'auto', 'model__regressor__max_depth': 80, 'model__regressor__bootstrap': True}
+'model__regressor__n_estimators': 1000, 'model__regressor__min_samples_split': 3, 'model__regressor__min_samples_leaf': 1, 'model__regressor__max_features': 'auto', 'model__regressor__max_depth': 80, 'model__regressor__bootstrap': True}
 
 Testing model terbaik **sebelum** di tuning:
 | |	MAE	|MAPE|	RMSLE	|R-Squared|
 |-----|-----|-----|-----|-----|
-|RandomForest	|17794.461094|	0.122322	|0.240366	|0.894169
+|RandomForest	|16983.233208	|0.116652|	0.238205	|0.898697|
 
 
 Testing model terbaik **setelah** di tuning:
 | |	MAE	|MAPE|	RMSLE	|R-Squared|
 |-----|-----|-----|-----|-----|
-|RandomForest	|17731.06426|	0.121759	|0.239235	|0.895058
+|RandomForest	|16924.340992|	0.115968|	0.23706|	0.89855|
 
 Terjadi peningkatan performa pada masing-masing metric sebesar:
 
-- MAE : 0.30%
-- MAPE : 0.46%
-- RMSLE : 0.47%
-- R-Squared : 0.1% 
+- MAE : 0.35%
+- MAPE : 0.59%
+- RMSLE : 0.48%
+- R-Squared : 0.02%
+
+## Number of features
+Pada data akhir, model kami hanya menggunakan 10 fitur/variable saja untuk memprediksi harga pasar properti dengan tipe residensials, yaitu :
+'depth', 'frontage', 'total_area', 'total_livable_area', 'property_age', 'total_rooms', 'overall_condition', 'is_there_a_garage', 'new_zoning', 'region'
+
+## Final Model Performance
+**Dari tahapan pemodelan, berikut performa model akhir (final) kami :**
+| |	MAE	|MAPE|	RMSLE	|
+|-----|-----|-----|-----|
+|RandomForest	|$16.92k|	11.59%|	0.237|
+
+## **Total Property Tax Revenue (simple simulation)**
+Dari sumber resmi yang kami dapat (https://www.phila.gov/services/payments-assistance-taxes/taxes/property-and-real-estate-taxes/real-estate-tax), besar **tarif pajak** untuk real estate/ residensial di kota philadelphia yaitu **1.3998%**. Maka dari itu kami mencoba membuat simulasi perhitungan pajak secara kasar, dengan asumi semua wajib pajak membayar pajak propertinya. 
+
+**𝑇𝑎𝑥 𝑅𝑒𝑣𝑒𝑛𝑢𝑒 = 1.3998% x 𝑇𝑜𝑡𝑎𝑙_𝑚𝑎𝑟𝑘𝑒𝑡_𝑣𝑎𝑙𝑢𝑒**\
+
+Dari grafik di atas dapat disimpulkan bahwa :
+
+Model yang kami bangun cenderung untuk melakukan underestimation, sehingga nilai pajak yang didapat lebih rendah dari nilai aktualnya. Akan tetapi perbedaan nya tidak terlalu jauh yaitu hanya sebesar 3%.
+
+
+![Tax Simulation  ](assets/tax_simulation.png) 
 
 # Conclusions and Recommendations
-## Conclusions
-1. Model yang telah dibangun memiliki score MAPE sebesar 12.1%. yang berarti ketika model yang dibuat digunakan untuk memprediksi nilai properti pada rentang nilai seperti yang dilatih terhadap model (market value: 1,000 USD - 4,160,000 USD ) untuk tipe properti residensial di kota Philadelphia, maka hasil prediksi yang dihasilkan oleh model memiliki kemungkinan tingkat kesalahan sebesar 12.1% dari nilai aslinya. Nilai MAPE yang didapat, yaitu sekitar **12,1%** menjadikan model ini dapat dikategorikan ke dalam **'Good forecasting'** (Lewis, 1982).
+## Conclusions  
 
-2. Performa Model yang kami mencapai target yang ditentukan yatu (MAPE <= 13% dan MAE <= 42,000USD)
+### Characteristics of historical data (from EDA).
+1. Hubungan linier negatif antara harga properti residensial dengan kondisi properti (interior & eksterior)
+2. Terjadi fluktuasi harga properti yang dijual pada rentang tahun 1918-1944. Mulai stabil pada tahun >=1944
+3. Ada korelasi yang positif antara harga market properti dengan luas bangunan dan tanah.
+4. Harga properti dengan median tertinggi terdapat pada region center city.
+5. Properti dengan umur ≤𝟏𝟎𝟎 𝒕𝒂𝒉𝒖𝒏 --> Tren median harga properti turun  
+   Properti dengan umur >𝟏𝟎𝟎 𝒕𝒂𝒉𝒖𝒏 --> Tren median harga properti naik
+
+### Modeling result
+Model yang dibangun memiliki nilai **MAE : $16.92k , MAPE : 11.59%, RMSLE : 0.237**. Secara keseluruhan, meskipun nilai MAE tergolong cukup besar (dibandingkan nilai median harga market properti yaitu $127.1k) tapi tingkat MAPE dan RMSLE yang relatif rendah menunjukkan bahwa dalam memperkirakan harga properti tipe single-family di Philadelphia, model ini memiliki tingkat akurasi yang relatif baik, dimana artinya nilai prediksi cenderung mendekati nilai aktual secara keseluruhan
+
+2. Performa Model kami memiliki nilai  MAE : $16.92k , MAPE : 11.59%, dan RMSLE : 0.237 telah mencapai target error/error goals yang ditetapkan yaitu  (MAE ≤ $42k , MAPE ≤ 13% , dan RMSLE : 0.239)
 
 3. Berdasarkan model yang dibuat (dilihat dari feature importance) fitur-fitur `property_age`, `total_area`, `overall_condition`, `total_livable_area` dan `region` menjadi fitur yang paling berpengaruh terhadap nilai prediksi harga market properti.
 
@@ -140,13 +179,20 @@ Terjadi peningkatan performa pada masing-masing metric sebesar:
     - `overall_condition` atau kondisi rumah (interior dan eksterior) pada nilai 4 (average) --> sebaran nya paling banyak yaitu di atas 70%
     - `total_livable_area` atau luas bangunan pada nilai 0 dan rentang nilai 1200-1210 sqft
     - `region` yaitu di wilayah phiadelphia utara (north) karena sebaran data nya paling banyak dan selatan (south) karena harga nya beragam atau tidak linier (wilayah ini berada tepat di tengah wilayah dengan nilai median market tertinggi dan terendah )
-</div>
 
 ## Recommendations
+### For OPA, from characteristics of historical data : 
+1. Pastikan penilaian mengenai kondisi rumah (interior dan eksterior) memiliki penilaian yang konsisten.
+2. Perhatikan tahun-tahun dimana harga properti memiliki fluktuasi yang tidak menentu. (contoh : 1918-1944 era Perang Dunia, covid : 2019-2020)
+3. Jika memungkinkan, luas tanah atau luas bangunan yang sempit/kecil jangan ditulis 0, tapi berikan nilai eksak nya.
+4. Pemerintah dapat lebih memperhatikan bangunan-bangunan lama (umurnya di atas 100 tahun) , karena memiliki nilai value yang tinggi.
+
+### For Model : 
+
 1. Saat mengecek prediksi mana saja yang memiliki nilai error yang tinggi dan karakteristik untuk 5 fitur terpenting. Pada akhirnya kita dapat mengetahui sebenarnya variabel mana saja dan aspek apa yang menyebabkan model menghasilkan error yang tinggi dengan lebih mendalam, sehingga kita bisa melakukan training ulang dengan penerapan feature engineering lainnya.
 
 2. Jika ada penambahan banyak data, dapat dicoba dengan menggunakan model yang lebih kompleks, seperti recursive neural networks (RNN). Namun, kalau jumlah data dan fiturnya masih seperti dataset ini, kemungkinan besar tidak akan mengubah hasilnya secara signifikan.
 
 3. Model yang sudah dibangun ini bisa dimanfaatkan untuk pengembangan pembuatan model lainnya. Misalkan kita ingin membuat model yang bisa memprediksi properti dengan kategori lain misalkan properti industri maupun apartemen {multi family)
 
-4. Melakukan tuning hyperparameter yang lebih impresif (memperluas parameter space atau menggunakan metodologi lain seperti Bayesian, GridSearch dll), untuk mendapatkan performa terbaik (dan mengurangi overfiiting). Tapi memang dibutuhkan resource/komputer dengan kemampuan komputasi yang lebih tinggi untuk model Random Forest.
+4. Melakukan tuning hyperparameter yang lebih impresif (memperluas parameter space atau menggunakan metodologi lain seperti Bayesian, GridSearch dll), untuk mendapatkan performa terbaik (dan mengurangi overfiiting). Tapi memang dibutuhkan resource/komputer dengan kemampuan komputasi yang lebih tinggi untuk model RandomForest.
