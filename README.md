@@ -1,7 +1,7 @@
 # **Property Market Value Predictions in Philadelphia**
 
-# Business Understanding
-## Context
+## Business Understanding
+### Context
 
 **Tentang Kota Philadelphia**
 
@@ -30,26 +30,26 @@ Dalam skala besar, setiap negara memiliki target pendapatan melalui pajak dengan
 Selain itu, menurut Thumbtack, waktu yang dibutuhkan untuk pembuatan laporan setelah dilakukan survei rata-rata 2 minggu. Sehingga OPA membutuhkan sebuah alat/tools untuk membantu menentukan harga pasar properti dengan cepat dan tepat.
    
 
-## Problem Statement
+### Problem Statement
 1. Bagaimana cara memprediksi harga pasar properti dengan akurat sehingga perhitungan pajak menjadi akurat?
 2. Alat/tools apa yang sebaiknya digunakan untuk menghitung nilai properti secara cepat dan akurat?
 3. Apa saja variabel yang memiliki pengaruh signifikan terhadap harga pasar properti di Kota Philadelphia?
 
-## Goal
+### Goal
 Membangun tool atau sebuah model prediktif berbasis machine learning yang dapat membantu OPA dalam **memprediksi harga pasar properti tipe single-family/residential di Kota Philadelphia yang belum ditaksasi**. Baik bangunan baru maupun bangunan lama yang memerlukan asesmen baru. Dengan menggunakan hasil prediksi model ini untuk menentukan harga pasar properti, diharapkan dapat membantu pemerintah dalam menentukan nilai pajak properti yang lebih akurat. Dengan penilaian yang lebih tepat, diharapkan pendapatan kota dari pajak properti dapat terserap dengan akurasi yang maksimal.
 
-## **Analytic Approach**
+### **Analytic Approach**
 <div align="justify"> Jadi dari penjabaran di atas, kami akan menganalisis data untuk dapat menemukan pola dari fitur-fitur yang ada, yang membedakan fitur tertentu seperti lokasi, tanggal, luas dengan yang lainnya dalam hal market value pada jenis gedung perumahan (Residentials atau single Family).
 
 Selanjutnya, kami akan membangun suatu model regresi yang akan membantu perusahaan/badan/lembaga untuk dapat menyediakan 'tool' atau model prediktif yang mampu prediksi market value of property (khususnya jenis perumahan/Residentials) di kota philadelpia di waktu dan lokasi tertentu. Disini kami akan melakukan eksperimen dengan beberapa algoritma model regresi yang sering digunakan seperti Linear Regression, KNN, SGD, Random Forest, XGB, dan LGBM. Dimana kami akan memilih satu model (atau gabungan dari beberapa model) untuk membuat tool tersebut yang sesuai dengan data dari Office of Property Assesment (OPA) </div>
 https://opendataphilly.org/datasets/philadelphia-properties-and-assessment-history/. 
 
-## Evaluation Metrics
+### Evaluation Metrics
 1. MAE (Mean Absolute Error)
 2. RMSLE (Root Mean Squared Log Error)
 3. MAPE (Mean Absolute Percentage Error)
 
-## **Error Goals**
+### **Error Goals**
 Error goals /toleransi error /kriteria penerimaan model mengacu pada tingkat error yang dapat diterima dalam model, apakah model yang dibangun memenuhi kriteria atau tidak.  
 
 Error target/goals yang akan kita coba capai adalah 
@@ -60,8 +60,8 @@ Error target/goals yang akan kita coba capai adalah
 | MAPE | <= 13%
 | RMSLE | <= 0.239
 
-# Data Understanding
-## Attributes Information & EDA
+## Data Understanding
+### Attributes Information & EDA
 1. Terdapat 6 kategori properti: Single Family, Multi Family, Mixed Use, Vacant Land, Commercial, dan Industrial.
 2. Kategori Single Family mendominasi hampir 80% dataset.
 3. Mayoritas persebaran data pada fitur-fitur diasumsikan tidak terdistribusi normal sehingga interpretasi data akan menggunakan median.
@@ -72,7 +72,7 @@ Error target/goals yang akan kita coba capai adalah
 Attributes Information dan EDA secara lengkap dan rinci dapat dilihat pada Notebook.
 
    
-# Preprocessing
+## Preprocessing
 Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang sudah dibersihkan akan kita gunakan untuk pemodelan. Beberapa hal yang dilakukan adalah:
 
 1) Data Cleaning
@@ -89,7 +89,7 @@ Pada tahap ini, kita akan melakukan cleaning pada data yang nantinya data yang s
 3) Data Transformation
 - langkah ini melibatkan pengubahan data ke dalam format yang lebih cocok untuk pemodelan regressi untuk memprediksi harga market properti. Ini dapat mencakup normalisasi data numerik, membuat variabel dummy, dan mengkodekan data kategorikal.
 
-# Modelling
+## Modelling
 Menggunakan uji RandomForest Regressor, XGBoost Regressor, dan LGBM Regressor dengan cross validation (n=5). Berikut hasilnya:
 
 |No|Model|	Mean_MAE	|Std_MAE	|Mean_MAPE	|Std_MAPE|	Mean_RMSLE|	Std_RMSLE|	Mean_R-Squared	|Std_R-Squared|	cv duration (minutes)|
@@ -102,7 +102,7 @@ Menggunakan uji RandomForest Regressor, XGBoost Regressor, dan LGBM Regressor de
 
 Selain itu dari hasil MAPE yang didapatkan bisa dibilang cukup rendah pada ketiga model ini, yang menandakan nilai prediksi yang lebih tinggi jika dibandingkan nilai aktual (overestimation) dapat di handel dengan cukup baik pada prediksi registered users, karea MAPE sensitif terhadap nilai prediksi yang overestimated. Sedangkan untuk RMSLE nya juga nilainya cukup kecil, yang artinya nilai prediksi yang lebih rendah dari nilai aktual nya (underestimation) dapat di handel dengan cukup baik juga, dimana RSMLE sensitif terhadap error pada nilai prediksi yang underestimated. </div>
 
-## Feature Importances
+### Feature Importances
 5 fitur terbaik, antara lain:
 - `property_age`
 - `total_area`
@@ -113,7 +113,7 @@ Selain itu dari hasil MAPE yang didapatkan bisa dibilang cukup rendah pada ketig
 Sesuai dengan pengetahuan umum bahwa kelima fitur ini akan cenderung memiliki pengaruh yang signifikan untuk pemodelan.
 Ada beberapa fitur yang tidak penting yang dihapus agar mempercepat waktu pelatihan dan prediksi, mengurangi overfitting, meningkatkan interpretabilitas, mengurangi kompleksitas dan biaya.
 
-## Hyperparameter Tuning
+### Hyperparameter Tuning
 Setelah dilakukan tuning kami mendapatkan best_parameter untuk model terbaik pada dataset ini : 
 'model__regressor__n_estimators': 1000, 'model__regressor__min_samples_split': 3, 'model__regressor__min_samples_leaf': 1, 'model__regressor__max_features': 'auto', 'model__regressor__max_depth': 80, 'model__regressor__bootstrap': True}
 
@@ -135,17 +135,17 @@ Terjadi peningkatan performa pada masing-masing metric sebesar:
 - RMSLE : 0.48%
 - R-Squared : 0.02%
 
-## Number of features
+### Number of features
 Pada data akhir, model kami hanya menggunakan 10 fitur/variable saja untuk memprediksi harga pasar properti dengan tipe residensials, yaitu :
 'depth', 'frontage', 'total_area', 'total_livable_area', 'property_age', 'total_rooms', 'overall_condition', 'is_there_a_garage', 'new_zoning', 'region'
 
-## Final Model Performance
-**Dari tahapan pemodelan, berikut performa model akhir (final) kami :**
+### Final Model Performance
+**Berikut performa model akhir (final) kami :**
 | |	MAE	|MAPE|	RMSLE	|
 |-----|-----|-----|-----|
 |RandomForest	|$16.92k|	11.59%|	0.237|
 
-## **Total Property Tax Revenue (simple simulation)**
+### **Total Property Tax Revenue (simple simulation)**
 Dari sumber resmi yang kami dapat (https://www.phila.gov/services/payments-assistance-taxes/taxes/property-and-real-estate-taxes/real-estate-tax), besar **tarif pajak** untuk real estate/ residensial di kota philadelphia yaitu **1.3998%**. Maka dari itu kami mencoba membuat simulasi perhitungan pajak secara kasar, dengan asumi semua wajib pajak membayar pajak propertinya. 
 
 **𝑇𝑎𝑥 𝑅𝑒𝑣𝑒𝑛𝑢𝑒 = 1.3998% x 𝑇𝑜𝑡𝑎𝑙_𝑚𝑎𝑟𝑘𝑒𝑡_𝑣𝑎𝑙𝑢𝑒**
@@ -157,10 +157,10 @@ Model yang kami bangun cenderung untuk melakukan underestimation, sehingga nilai
 
 ![Tax Simulation  ](assets/tax_simulation.png) 
 
-# Conclusions and Recommendations
-## Conclusions  
+## Conclusions and Recommendations
+### Conclusions  
 
-### Characteristics of historical data (from EDA).
+#### Characteristics of historical data (from EDA).
 1. Hubungan linier negatif antara harga properti residensial dengan kondisi properti (interior & eksterior)
 2. Terjadi fluktuasi harga properti yang dijual pada rentang tahun 1918-1944. Mulai stabil pada tahun >=1944
 3. Ada korelasi yang positif antara harga market properti dengan luas bangunan dan tanah.
@@ -168,7 +168,7 @@ Model yang kami bangun cenderung untuk melakukan underestimation, sehingga nilai
 5. Properti dengan umur ≤𝟏𝟎𝟎 𝒕𝒂𝒉𝒖𝒏 --> Tren median harga properti turun  
    Properti dengan umur >𝟏𝟎𝟎 𝒕𝒂𝒉𝒖𝒏 --> Tren median harga properti naik
 
-### Modeling result
+#### Modeling result
 Model yang dibangun memiliki nilai **MAE : $16.92k , MAPE : 11.59%, RMSLE : 0.237**. Secara keseluruhan, meskipun nilai MAE tergolong cukup besar (dibandingkan nilai median harga market properti yaitu $127.1k) tapi tingkat MAPE dan RMSLE yang relatif rendah menunjukkan bahwa dalam memperkirakan harga properti tipe single-family di Philadelphia, model ini memiliki tingkat akurasi yang relatif baik, dimana artinya nilai prediksi cenderung mendekati nilai aktual secara keseluruhan
 
 2. Performa Model kami memiliki nilai  MAE : $16.92k , MAPE : 11.59%, dan RMSLE : 0.237 telah mencapai target error/error goals yang ditetapkan yaitu  (MAE ≤ $42k , MAPE ≤ 13% , dan RMSLE : 0.239)
@@ -182,14 +182,14 @@ Model yang dibangun memiliki nilai **MAE : $16.92k , MAPE : 11.59%, RMSLE : 0.23
     - `total_livable_area` atau luas bangunan pada nilai 0 dan rentang nilai 1200-1210 sqft
     - `region` yaitu di wilayah phiadelphia utara (north) karena sebaran data nya paling banyak dan selatan (south) karena harga nya beragam atau tidak linier (wilayah ini berada tepat di tengah wilayah dengan nilai median market tertinggi dan terendah )
 
-## Recommendations
-### For OPA, from characteristics of historical data : 
+### Recommendations
+#### For OPA, from characteristics of historical data : 
 1. Pastikan penilaian mengenai kondisi rumah (interior dan eksterior) memiliki penilaian yang konsisten.
 2. Perhatikan tahun-tahun dimana harga properti memiliki fluktuasi yang tidak menentu. (contoh : 1918-1944 era Perang Dunia, covid : 2019-2020)
 3. Jika memungkinkan, luas tanah atau luas bangunan yang sempit/kecil jangan ditulis 0, tapi berikan nilai eksak nya.
 4. Pemerintah dapat lebih memperhatikan bangunan-bangunan lama (umurnya di atas 100 tahun) , karena memiliki nilai value yang tinggi.
 
-### For Model : 
+#### For Model : 
 
 1. Saat mengecek prediksi mana saja yang memiliki nilai error yang tinggi dan karakteristik untuk 5 fitur terpenting. Pada akhirnya kita dapat mengetahui sebenarnya variabel mana saja dan aspek apa yang menyebabkan model menghasilkan error yang tinggi dengan lebih mendalam, sehingga kita bisa melakukan training ulang dengan penerapan feature engineering lainnya.
 
