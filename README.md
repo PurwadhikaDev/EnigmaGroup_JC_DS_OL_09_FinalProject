@@ -146,7 +146,7 @@ Pada data akhir, model kami hanya menggunakan 10 fitur/variable saja untuk mempr
 ## **Total Property Tax Revenue (simple simulation)**
 Dari sumber resmi yang kami dapat (https://www.phila.gov/services/payments-assistance-taxes/taxes/property-and-real-estate-taxes/real-estate-tax), besar **tarif pajak** untuk real estate/ residensial di kota philadelphia yaitu **1.3998%**. Maka dari itu kami mencoba membuat simulasi perhitungan pajak secara kasar, dengan asumi semua wajib pajak membayar pajak propertinya. 
 
-**𝑇𝑎𝑥 𝑅𝑒𝑣𝑒𝑛𝑢𝑒 = 1.3998% x 𝑇𝑜𝑡𝑎𝑙_𝑚𝑎𝑟𝑘𝑒𝑡_𝑣𝑎𝑙𝑢𝑒**\
+**𝑇𝑎𝑥 𝑅𝑒𝑣𝑒𝑛𝑢𝑒 = 1.3998% x 𝑇𝑜𝑡𝑎𝑙_𝑚𝑎𝑟𝑘𝑒𝑡_𝑣𝑎𝑙𝑢𝑒**
 
 Dari grafik di bawah dapat disimpulkan bahwa :
 
